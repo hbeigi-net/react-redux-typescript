@@ -1,11 +1,13 @@
-import Counter from "./counter"
-interface Appprops {
-    color  ?: string
+import {Provider } from "react-redux";
+import { store } from "./store/store";
+import Todo from "./renderTodo"
+function App(): JSX.Element {
+  return (
+    <>
+      <Provider store={store}>
+        <Todo/>
+      </Provider>
+    </>
+  );
 }
-function App({color} : Appprops):JSX.Element
-{
-    return <>
-            <Counter name="hamid" age={23} address="tehran-iran"/>
-            </>
-}
-export default App
+export default App;

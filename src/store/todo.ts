@@ -4,6 +4,9 @@ import { AnyAction } from "redux";
 import { ThunkAction } from "redux-thunk";
 import {AppState} from "./store"
 
+
+
+// todo types below 
 type todoActionTypes =
   | "fetch_todo_start"
   | "fetch_todo_resolved"
@@ -21,6 +24,13 @@ interface TodoAction {
   payload: Todo[] | Error | number;
 }
 
+export interface TodoState {
+  todoes: Todo[];
+  isLoading: boolean;
+  hasError?: boolean;
+}
+
+// todo action creators below 
 export const todoFetchStart = (): TodoAction => {
   return {
     type: "fetch_todo_start",
@@ -49,6 +59,8 @@ export const todoDeleteItem = (id : number):TodoAction=>
       payload : id
     }
 }
+
+// todo thunks below 
 export const getTodoes = 
 (url: string):ThunkAction<void , AppState , unknown , AnyAction> => {
   return async (dispatch:Dispatch<TodoAction>) => {
@@ -67,11 +79,7 @@ export const getTodoes =
   };
 };
 
-export interface TodoState {
-  todoes: Todo[];
-  isLoading: boolean;
-  hasError?: boolean;
-}
+
 const initialState = {
   todoes : [] , 
   isLoading : false , 
